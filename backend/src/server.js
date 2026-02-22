@@ -1,14 +1,26 @@
 import express from 'express';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import path from 'path';
+import { ENV } from './lib/env.js';
 
 const app = express();
 
-app.get('/', (req, res) => {
+const __dirname = path.resolve();
+
+
+app.get('/home', (req, res) => {
     res.status(200).json({ message: 'Hello, World!' });
 });
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log('Server is running on port ' + (process.env.PORT || 3000));
+
+// For the production environment, serve the frontend files as well from the backend server
+if ( ENV.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+    app.get("/{*any}", (req, res) => {
+        res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+    })
+}
+
+app.listen(ENV.PORT, () => {
+    console.log('Server is running on port ' + ENV.PORT);
 });
