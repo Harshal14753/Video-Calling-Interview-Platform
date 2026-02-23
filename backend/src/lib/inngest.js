@@ -1,5 +1,5 @@
-import inngest, { Inngest } from "inngest";
-import connectDB from "./db.js";
+import { Inngest } from "inngest";
+import { connectDB } from "./db.js";
 import User from "../models/User.model.js";
 
 export const inngest = new Inngest({ id: "harshal-video-calling-interview-platform" });
