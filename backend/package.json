@@ -1,10 +1,10 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "src/server.js",
+  "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "type": "module",
   "keywords": [],
@@ -12,8 +12,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "cros": "^1.1.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "inngest": "^3.44.3",
     "mongoose": "^8.18.1",
     "video-calling-interview-platform": "file:.."
   },
