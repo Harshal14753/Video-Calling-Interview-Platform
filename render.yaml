@@ -3,7 +3,7 @@ services:
     name: video-calling-interview-platform
     env: node
     plan: free
-    rootDir: .
+    rootDir: backend
     buildCommand: |
       npm install --prefix backend
       npm install --prefix frontend
