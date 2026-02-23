@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: video-calling-interview-platform
+    env: node
+    plan: free
+    startCommand: npm run start --prefix backend
+    buildCommand: npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend
+    envVars:
+      - key: NODE_ENV
+        value: production
