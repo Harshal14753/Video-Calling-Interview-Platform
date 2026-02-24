@@ -21,7 +21,15 @@ app.get('/home', (req, res) => {
 
 // For the production environment, serve the frontend files as well from the backend server
 if ( ENV.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+
+    const frontendPath = path.join(__dirname, '../../frontend/dist');
+    
+    // Check if frontend dist exists
+    if (!require('fs').existsSync(frontendPath)) {
+        console.warn('Frontend dist folder not found. Make sure to build frontend before running in production.');
+    }
+    
+    app.use(express.static(frontendPath));
 
     app.get(/.*/, (req, res) => {
         res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'));
