@@ -5,6 +5,7 @@ import { connectDB } from './lib/db.js';
 import cors from 'cors';
 import {serve} from 'inngest/express';
 import { inngest, functions } from './lib/inngest.js';
+import fs from 'fs';
 
 const app = express();
 
@@ -25,7 +26,7 @@ if ( ENV.NODE_ENV === 'production') {
     const frontendPath = path.join(__dirname, '../../frontend/dist');
     
     // Check if frontend dist exists
-    if (!require('fs').existsSync(frontendPath)) {
+    if (!fs.existsSync(frontendPath)) {
         console.warn('Frontend dist folder not found. Make sure to build frontend before running in production.');
     }
     
